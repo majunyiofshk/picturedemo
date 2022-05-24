@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_content_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:paddingStart="6dp"
+    >
+    <com.ma.pictureeditdemo.editdialog.CustumerEditext
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:id="@+id/edit_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="8dp"
+        android:layout_weight="1"
+        android:background="@drawable/notify_edit_bg"
+        android:hint="@string/edit_default_text"
+        android:paddingStart="4dp"
+        android:textColorHint="#777777"
+        android:textSize="14sp"
+        />
+
+    <Button
+        android:id="@+id/bt_send"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/notify_orange_bg"
+        android:text="发送"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        />
+</LinearLayout>

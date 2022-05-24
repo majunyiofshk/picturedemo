@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    tools:context=".CropActivity">
+
+    <com.ma.pictureeditdemo.box.CropPhotoView
+        android:id="@+id/cropView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/tt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <Button
+        android:id="@+id/btn_rotation"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
+        android:text="角度"
+        android:textColor="#666666"
+        android:textSize="11sp"
+        />
+
+    <Button
+        android:id="@+id/btn_free"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="自由"
+        android:textColor="#666666"
+        android:textSize="11sp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="20dp"
+        />
+
+    <Button
+        android:id="@+id/btn_origin"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        app:layout_constraintStart_toEndOf="@id/btn_free"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="原始"
+        android:textColor="#666666"
+        android:textSize="11sp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="20dp"
+        />
+
+    <Button
+        android:id="@+id/btn_1"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        app:layout_constraintStart_toEndOf="@id/btn_origin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="1:1"
+        android:textColor="#666666"
+        android:textSize="11sp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="20dp"
+        />
+
+    <Button
+        android:id="@+id/btn_16"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        app:layout_constraintStart_toEndOf="@id/btn_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="16:9"
+        android:textColor="#666666"
+        android:textSize="11sp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="20dp"
+        />
+
+    <Button
+        android:id="@+id/btn_9"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        app:layout_constraintStart_toEndOf="@id/btn_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="9:16"
+        android:textColor="#666666"
+        android:textSize="11sp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="20dp"
+        />
+
+    <Button
+        android:id="@+id/btn_rotate"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        app:layout_constraintStart_toEndOf="@id/btn_9"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="旋转"
+        android:textColor="#666666"
+        android:textSize="11sp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="20dp"
+        />
+
+    <com.ma.pictureeditdemo.rule.URulerView
+        android:id="@+id/rulerView"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:rulerMinScale="-40"
+        app:rulerMaxScale="40"
+        app:rulerCountForMaxScale="10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="80dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

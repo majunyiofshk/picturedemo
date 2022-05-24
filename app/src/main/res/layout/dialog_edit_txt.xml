@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white">
+    
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_dialog_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:padding="8dp"
+        android:hint="@string/edit_default_text"
+        android:background="@drawable/bg_edit_txt_dialog"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_dialog_text_sure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/et_dialog_text"
+        app:layout_constraintStart_toEndOf="@id/et_dialog_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="14sp"
+        android:text="@string/edit_text_sure"
+        android:enabled="false"
+        android:textColor="@android:color/black"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_dialog_text_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/tv_dialog_text_sure"
+        app:layout_constraintBottom_toTopOf="@id/tv_dialog_text_sure"
+        android:textSize="14sp"
+        android:text="@string/edit_text_number"
+        android:textColor="@android:color/black"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
