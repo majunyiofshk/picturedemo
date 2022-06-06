@@ -2,11 +2,19 @@ package com.ma.pictureeditdemo.touch
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.text.Layout
+import android.text.StaticLayout
+import android.text.TextPaint
 import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import com.ma.pictureeditdemo.extensions.dp
+import com.ma.pictureeditdemo.extensions.sp
 
 /**
  * @Description:
@@ -17,10 +25,20 @@ import android.view.ViewGroup
 class BottomView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null,
         defStyleAttr: Int = 0,
-) : ViewGroup(context, attrs, defStyleAttr) {
+) : View(context, attrs, defStyleAttr) {
+    
+    private var mTextPaint = TextPaint().apply {
+        style = Paint.Style.FILL
+        isAntiAlias = true
+        isDither = true
+        color = Color.BLACK
+        textSize = 18.sp()
+    }
+    private val mStaticLayout: StaticLayout
     
     init {
-        // isClickable = true
+        mStaticLayout = StaticLayout("石岛红合适的话松岛枫", mTextPaint, 200, Layout.Alignment.ALIGN_NORMAL, 1f, 0f, false)
+        Log.e("TextBox", "width = ${mStaticLayout.width}, height = ${mStaticLayout.height}")
     }
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
@@ -29,7 +47,8 @@ class BottomView @JvmOverloads constructor(
         return boolean
     }
     
-    override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
-    
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+        mStaticLayout.draw(canvas)
     }
 }

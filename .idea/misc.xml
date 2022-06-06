@@ -6,10 +6,12 @@
         <entry key="..\:/demo/Edit/app/src/main/res/drawable/bg_edit_txt_dialog.xml" value="0.211" />
         <entry key="..\:/demo/Edit/app/src/main/res/drawable/crop__selectable_background.xml" value="0.1945" />
         <entry key="..\:/demo/Edit/app/src/main/res/drawable/crop__texture.xml" value="0.1945" />
+        <entry key="..\:/demo/Edit/app/src/main/res/drawable/ic_crop_1_1_selected.xml" value="0.211" />
+        <entry key="..\:/demo/Edit/app/src/main/res/drawable/ic_edit_crop_1_1_normal.xml" value="0.211" />
         <entry key="..\:/demo/Edit/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1945" />
         <entry key="..\:/demo/Edit/app/src/main/res/drawable/notify_edit_bg.xml" value="0.211" />
         <entry key="..\:/demo/Edit/app/src/main/res/drawable/notify_orange_bg.xml" value="0.211" />
-        <entry key="..\:/demo/Edit/app/src/main/res/layout/activity_crop.xml" value="0.5" />
+        <entry key="..\:/demo/Edit/app/src/main/res/layout/activity_crop.xml" value="0.40729166666666666" />
         <entry key="..\:/demo/Edit/app/src/main/res/layout/activity_fullscreen.xml" value="0.1" />
         <entry key="..\:/demo/Edit/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
         <entry key="..\:/demo/Edit/app/src/main/res/layout/activity_ruler.xml" value="0.20018115942028986" />

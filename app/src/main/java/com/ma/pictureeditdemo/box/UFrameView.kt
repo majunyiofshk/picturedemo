@@ -148,7 +148,7 @@ class UFrameView constructor(var cropPhotoView: CropPhotoView) {
         if (!isSizeChanged) cropPhotoView.postInvalidate()
     }
 
-    private fun  updateForTouch(r: RectF){
+    private fun updateForTouch(r: RectF){
         mCurrentRectF.set(r)
         cropPhotoView.postInvalidate()
     }

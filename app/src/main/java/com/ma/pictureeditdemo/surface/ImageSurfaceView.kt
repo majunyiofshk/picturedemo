@@ -1,9 +1,13 @@
 package com.ma.pictureeditdemo.surface
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.PixelFormat
+import android.net.Uri
 import android.opengl.GLSurfaceView
 import android.util.AttributeSet
+import android.view.MotionEvent
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 
@@ -16,24 +20,33 @@ import javax.microedition.khronos.opengles.GL10
 class ImageSurfaceView @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = null,
-) : GLSurfaceView(context, attrs), GLSurfaceView.Renderer {
+) : GLSurfaceView(context, attrs) {
+    
+    private val mTouchController = TouchController(this)
+    private val mTextureRenderer = TextureRenderer(this)
     
     init {
         setEGLContextClientVersion(2)
-        setRenderer(this)
-        holder.setFormat(PixelFormat.TRANSLUCENT)
+        setRenderer(mTextureRenderer)
+        // holder.setFormat(PixelFormat.TRANSLUCENT)
         renderMode = RENDERMODE_WHEN_DIRTY
+        requestRender()
     }
     
-    override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
-    
+    /**
+    * 添加手势变换监听
+    * */
+    fun addOnTransformationListener(listener: TouchController.OnTransformationListener) {
+        mTouchController.addOnTransformationListener(listener)
     }
     
-    override fun onSurfaceChanged(gl: GL10?, width: Int, height: Int) {
-    
+    @SuppressLint("ClickableViewAccessibility")
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        return mTouchController.onTouchEvent(event)
     }
     
-    override fun onDrawFrame(gl: GL10?) {
-    
+    fun setTX(value: Float) {
+        mTextureRenderer.translateX = value / width * 2
+        requestRender()
     }
 }

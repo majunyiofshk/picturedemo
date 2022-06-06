@@ -8,14 +8,21 @@ import android.graphics.PointF
 import android.graphics.Rect
 import android.graphics.RectF
 import android.graphics.drawable.Drawable
+import android.text.DynamicLayout
+import android.text.Layout
+import android.text.StaticLayout
+import android.text.TextPaint
 import android.text.TextUtils
+import android.util.Log
 import android.widget.ImageView
 import androidx.core.content.res.ResourcesCompat
 import com.ma.pictureeditdemo.R
+import com.ma.pictureeditdemo.extensions.dp
 import com.ma.pictureeditdemo.extensions.dp2px
 import com.ma.pictureeditdemo.extensions.sp2px
 import kotlin.math.abs
 import kotlin.math.atan2
+import kotlin.math.max
 
 class TextBox constructor(var imageView: ImageView, var text: String) {
     private val mBoxStrokeWidth = imageView.dp2px(1).toFloat()
@@ -23,10 +30,21 @@ class TextBox constructor(var imageView: ImageView, var text: String) {
     
     private var mBoxPaint: Paint = Paint()
     val mBoxRectF: RectF = RectF()
-    private var mTextPaint: Paint = Paint()
+    
     private var mTextColor = Color.WHITE
     private val mTextSize = imageView.sp2px(18)
     private val mTextPadding = imageView.dp2px(8).toFloat()
+    
+    private var mTextPaint: Paint = Paint()
+    private var mTextPaint2 = TextPaint().apply {
+        style = Paint.Style.FILL
+        isAntiAlias = true
+        isDither = true
+        color = mTextColor
+        textSize = mTextSize.toFloat()
+    }
+    private lateinit var mStaticLayout: StaticLayout
+    private val mMaxTextWidth = 153.dp()
     
     private var mCopyDrawable: Drawable?
     private var mDeleteDrawable: Drawable?
@@ -55,16 +73,37 @@ class TextBox constructor(var imageView: ImageView, var text: String) {
             it.color = mTextColor
             it.textSize = mTextSize.toFloat()
         }
+        
         //计算编辑框大小
-        val bounds = Rect()
-        mTextPaint.getTextBounds(text, 0, text.length, bounds)
-        val width = bounds.width().toFloat() + 2 * mTextPadding
-        val height = bounds.height().toFloat() + 2 * mTextPadding
-        mBoxRectF.set(0f, 0f, width, height)
+        // val bounds = Rect()
+        // mTextPaint.getTextBounds(text, 0, text.length, bounds)
+        // val width = bounds.width().toFloat() + 2 * mTextPadding
+        // val height = bounds.height().toFloat() + 2 * mTextPadding
+        // mBoxRectF.set(0f, 0f, width, height)
+        calcRectOnSizeChanged(text)
         
         mCopyDrawable = ResourcesCompat.getDrawable(imageView.resources, R.drawable.ic_edit_txt_copy, null)
         mDeleteDrawable = ResourcesCompat.getDrawable(imageView.resources, R.drawable.ic_edit_txt_delete, null)
         mStretchDrawable = ResourcesCompat.getDrawable(imageView.resources, R.drawable.ic_edit_txt_stretch, null)
+    }
+    
+    private fun calcRectOnSizeChanged(text: String){
+        val list = text.split("\n")
+        var staticLayoutWidth = 1080f
+        var width = 0f
+        var height = 0f
+        for (element in list) {
+            if (element.length >= 10) {
+                staticLayoutWidth = mTextPaint2.measureText(element.substring(0, 10))
+                width = staticLayoutWidth
+                break
+            }
+            width = max(width, mTextPaint2.measureText(element))
+        }
+        mStaticLayout = StaticLayout(text, mTextPaint2, staticLayoutWidth.toInt(), Layout.Alignment.ALIGN_NORMAL, 1f, 0f, false)
+        width += 2 * mTextPadding
+        height += mStaticLayout.height + 2 * mTextPadding
+        mBoxRectF.set(0f, 0f, width, height)
     }
     
     fun configure(matrix: Matrix?, rotateMatrix: Matrix?){
@@ -239,11 +278,12 @@ class TextBox constructor(var imageView: ImageView, var text: String) {
             return
         }
         //重新计算编辑框大小
-        val bounds = Rect()
-        mTextPaint.getTextBounds(newText, 0, newText.length, bounds)
-        val newWidth = bounds.width() + 2 * mTextPadding
-        val newHeight = bounds.height() + 2 * mTextPadding
-        mBoxRectF.set(0f, 0f, newWidth, newHeight)
+        // val bounds = Rect()
+        // mTextPaint.getTextBounds(newText, 0, newText.length, bounds)
+        // val newWidth = bounds.width() + 2 * mTextPadding
+        // val newHeight = bounds.height() + 2 * mTextPadding
+        // mBoxRectF.set(0f, 0f, newWidth, newHeight)
+        calcRectOnSizeChanged(newText)
         imageView.invalidate()
         text = newText
     }
@@ -268,7 +308,8 @@ class TextBox constructor(var imageView: ImageView, var text: String) {
         mTempMatrix.postConcat(mRotateMatrix)
         canvas.save()
         canvas.concat(mTempMatrix)
-        canvas.drawText(text, mTextPadding, mBoxRectF.height() - mTextPadding, mTextPaint)
+        canvas.translate(mTextPadding, mTextPadding)
+        mStaticLayout.draw(canvas)
         canvas.restore()
     }
     

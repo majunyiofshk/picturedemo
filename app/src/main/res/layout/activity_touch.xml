@@ -4,15 +4,116 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
     tools:context=".TouchActivity">
 
-    <com.ma.pictureeditdemo.touch.TopView
+    <com.ma.pictureeditdemo.surface.ImageSurfaceView
+        android:id="@+id/image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
-    <com.ma.pictureeditdemo.touch.BottomView
+<!--    <androidx.appcompat.widget.AppCompatTextView-->
+<!--        android:id="@+id/tv_test"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="307.5px"-->
+<!--        android:layout_marginStart="24dp"-->
+<!--        android:layout_marginEnd="24dp"-->
+<!--        android:background="#f88"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        />-->
+
+<!--    <View-->
+<!--        android:layout_width="20dp"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:background="#f88"-->
+<!--        />-->
+
+    <com.ma.pictureeditdemo.surface.CropFrame
+        android:id="@+id/cropFrame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        />
 
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="20dp"
+        android:scrollbars="none"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+            <Button
+                android:id="@+id/btn_free"
+                android:layout_width="60dp"
+                android:layout_height="32dp"
+                android:text="自由"
+                android:textColor="#666666"
+                android:textSize="11sp"
+                android:layout_marginStart="5dp"
+                />
+            <Button
+                android:id="@+id/btn_origin"
+                android:layout_width="60dp"
+                android:layout_height="32dp"
+                android:text="原始"
+                android:textColor="#666666"
+                android:textSize="11sp"
+                android:layout_marginStart="5dp"
+                />
+            <Button
+                android:id="@+id/btn_1_1"
+                android:layout_width="60dp"
+                android:layout_height="32dp"
+                android:text="1:1"
+                android:textColor="#666666"
+                android:textSize="11sp"
+                android:layout_marginStart="5dp"
+                />
+            <Button
+                android:id="@+id/btn_16_9"
+                android:layout_width="60dp"
+                android:layout_height="32dp"
+                android:text="16:9"
+                android:textColor="#666666"
+                android:textSize="11sp"
+                android:layout_marginStart="5dp"
+                />
+            <Button
+                android:id="@+id/btn_9_16"
+                android:layout_width="60dp"
+                android:layout_height="32dp"
+                android:text="9:16"
+                android:textColor="#666666"
+                android:textSize="11sp"
+                android:layout_marginStart="5dp"
+                />
+            <Button
+                android:id="@+id/btn_3_2"
+                android:layout_width="60dp"
+                android:layout_height="32dp"
+                android:text="3:2"
+                android:textColor="#666666"
+                android:textSize="11sp"
+                android:layout_marginStart="5dp"
+                />
+            <Button
+                android:id="@+id/btn_2_3"
+                android:layout_width="60dp"
+                android:layout_height="32dp"
+                android:text="2:3"
+                android:textColor="#666666"
+                android:textSize="11sp"
+                android:layout_marginStart="5dp"
+                />
+        </LinearLayout>
+    </HorizontalScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
